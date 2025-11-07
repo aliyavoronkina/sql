@@ -9,5 +9,4 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
-      - ./demo-data.sql:/docker-entrypoint-initdb.d/2-demo-data.sql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
