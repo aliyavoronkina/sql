@@ -10,6 +10,7 @@ public class LoginPage {
     private final SelenideElement passwordField = $("[data-test-id=password] input");
     private final SelenideElement loginButton = $("[data-test-id=action-login]");
     private final SelenideElement errorText = $("[data-test-id=error-notification] .notification__content");
+    private final SelenideElement errorNotification = $("[data-test-id=error-notification]");
 
     public void login(String login, String password) {
         loginField.setValue(login);
@@ -18,33 +19,14 @@ public class LoginPage {
     }
 
     public void shouldShowErrorNotification() {
-        $("[data-test-id=error-notification]").shouldBe(visible);
+        errorNotification.shouldBe(visible);
     }
 
     public void shouldHaveErrorText(String expectedText) {
         errorText.shouldHave(text(expectedText));
     }
 
-    public String getErrorText() {
-        SelenideElement error = $("[data-test-id=error-notification] .notification__content");
-        if (error.exists() && error.isDisplayed()) {
-            return error.getText().trim();
-        }
-
-        error = $(".notification__content");
-        if (error.exists() && error.isDisplayed()) {
-            return error.getText().trim();
-        }
-
-        error = $("[data-test-id=error-notification]");
-        if (error.exists() && error.isDisplayed()) {
-            return error.getText().trim();
-        }
-
-        return "";
-    }
-
     public boolean isErrorVisible() {
-        return $("[data-test-id=error-notification]").isDisplayed();
+        return errorNotification.isDisplayed();
     }
 }

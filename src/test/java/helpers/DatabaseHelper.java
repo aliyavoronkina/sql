@@ -8,8 +8,8 @@ import java.sql.DriverManager;
 
 public class DatabaseHelper {
     private static final String url = "jdbc:mysql://localhost:3306/app";
-    private static final String user = "appuser";
-    private static final String pass = "pass";
+    private static final String user = "root";    // меняем на root
+    private static final String pass = "root";    // меняем на root
 
     public static void clearAuthCodes() {
         var runner = new QueryRunner();

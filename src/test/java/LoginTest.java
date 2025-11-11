@@ -28,7 +28,7 @@ public class LoginTest {
 
         loginPage.login(DataHelper.getValidLogin(), DataHelper.getValidPassword());
 
-        $("[data-test-id=code] input").shouldBe(visible, enabled);
+        verificationPage.shouldShowCodeInput();
 
         String verificationCode = DatabaseHelper.getVerificationCode();
         verificationPage.verify(verificationCode);
@@ -40,11 +40,7 @@ public class LoginTest {
     void shouldShowErrorAfterInvalidPassword() {
         LoginPage loginPage = new LoginPage();
 
-        // Проверяем только одну попытку с неправильным паролем
         loginPage.login(DataHelper.getValidLogin(), DataHelper.getInvalidPassword());
-
-        // Даем время на появление ошибки
-        sleep(1000);
 
         loginPage.shouldShowErrorNotification();
         loginPage.shouldHaveErrorText("Ошибка! Неверно указан логин или пароль");
